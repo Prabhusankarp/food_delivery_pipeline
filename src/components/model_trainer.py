@@ -4,6 +4,9 @@ import pandas as pd
 from sklearn.linear_model import LinearRegression, Ridge,Lasso,ElasticNet
 from src.exception import CustomException
 from src.logger import logging
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
+import xgboost as xgb
 
 from src.utils import save_object
 from src.utils import evaluate_model
@@ -35,7 +38,10 @@ class ModelTrainer:
             'LinearRegression':LinearRegression(),
             'Lasso':Lasso(),
             'Ridge':Ridge(),
-            'Elasticnet':ElasticNet()
+            'Elasticnet':ElasticNet(),
+            'DecisionTreeRegressor':DecisionTreeRegressor(),
+            'RandomForestRegressor':RandomForestRegressor(),
+            'XGBRegressor':xgb.XGBRegressor(n_estimators=25,max_depth=7)
         }
             
             model_report:dict=evaluate_model(X_train,y_train,X_test,y_test,models)
